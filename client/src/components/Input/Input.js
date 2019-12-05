@@ -8,8 +8,8 @@ const Input = ({ message, setMessage, sendMessage }) => (
     <FormControl
       value={message}
       placeholder="type a message..."
-      onChange={event => {
-        setMessage(event.target.value);
+      onChange={({ target: { value } }) => {
+        setMessage(value);
       }}
       onKeyPress={event => (event.key === "Enter" ? sendMessage(event) : null)}
     />

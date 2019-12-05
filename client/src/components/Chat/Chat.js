@@ -63,6 +63,7 @@ const Chat = ({ location }) => {
           sendMessage={sendMessage}
         />
       </Container>
+      {/* <TextContainer users={users} /> */}
     </Container>
   );
 };

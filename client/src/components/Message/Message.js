@@ -1,33 +1,42 @@
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-const Message = ({message: {user, text}, name}) => {
+import ReactEmoji from "react-emoji";
+
+const Message = ({ message: { user, text }, name }) => {
   let isSentByCurrentUser = false;
 
   const trimmedName = name.trim().toLowerCase();
 
-  if(user === trimmedName){
-      isSentByCurrentUser = true;
+  if (user === trimmedName) {
+    isSentByCurrentUser = true;
   }
 
-  return (
-      isSentByCurrentUser
-      ? (
-          <Container>
-          <Row>
-          <Col>
-              <p className="lead">{trimmedName}</p>
-              <p>{text}</p>
-</Col>
-              </Row>
+  return isSentByCurrentUser ? (
+    <Container className="d-flex justify-content-start">
+      <Row>
+        <Col>
+          <p className="lead">{trimmedName}</p>
+          <Container className="bg-primary text-white">
+            <p>{ReactEmoji.emojify(text)}</p>
           </Container>
-      )
-      : (
-          // here
-      )
-  )
-}
+        </Col>
+      </Row>
+    </Container>
+  ) : (
+    <Container className="d-flex justify-content-end">
+      <Row>
+        <Col>
+          <Container className="bg-secondary text-white">
+            <p>{ReactEmoji.emojify(text)}</p>
+          </Container>
+        </Col>
+      </Row>
+      <p className="lead pl-3">{trimmedName}</p>
+    </Container>
+  );
+};
 
-export default Message
+export default Message;
