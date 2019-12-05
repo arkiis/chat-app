@@ -2,10 +2,13 @@ import React from "react";
 import FormControl from "react-bootstrap/FormControl";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import "./Input.css";
 
 const Input = ({ message, setMessage, sendMessage }) => (
-  <Form>
-    <FormControl
+  <form className="form">
+    <input
+      className="input"
+      type="text"
       value={message}
       placeholder="type a message..."
       onChange={({ target: { value } }) => {
@@ -13,8 +16,10 @@ const Input = ({ message, setMessage, sendMessage }) => (
       }}
       onKeyPress={event => (event.key === "Enter" ? sendMessage(event) : null)}
     />
-    <Button onClick={event => sendMessage(event)}>Send</Button>
-  </Form>
+    <button className="sendButton" onClick={event => sendMessage(event)}>
+      Send
+    </button>
+  </form>
 );
 
 export default Input;

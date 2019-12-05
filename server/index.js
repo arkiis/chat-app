@@ -1,6 +1,7 @@
+const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
-const http = require("http");
+
 const cors = require("cors");
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users.js");
@@ -13,11 +14,11 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 //use as a middleware
+app.use(cors());
 app.use(router);
-app.use(cors);
 
 //socket.io code
-io.on("connection", socket => {
+io.on("connect", socket => {
   socket.on("join", ({ name, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, room });
 
@@ -55,7 +56,7 @@ io.on("connection", socket => {
 
     if (user) {
       io.to(user.room).emit("message", {
-        user: "admin",
+        user: "Admin",
         text: `${user.name} has left`
       });
       io.to(user.room).emit("roomData", {

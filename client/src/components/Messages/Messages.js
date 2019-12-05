@@ -1,12 +1,13 @@
 import React from "react";
 import Message from "../Message/Message";
 import ScrollToBottom from "react-scroll-to-bottom";
+import "./Messages.css";
 
 const Messages = ({ messages, name }) => (
-  <ScrollToBottom>
+  <ScrollToBottom className="messages">
     {messages.map((message, i) => (
       <div key={i}>
-        <Messages messages={messages} name={name} />
+        <Message message={message} name={name} />
       </div>
     ))}
   </ScrollToBottom>
