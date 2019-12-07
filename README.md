@@ -1,4 +1,4 @@
 # chat-app
 Real time chat 
 
-view prject: https://pedantic-ptolemy-57874b.netlify.com/
+view project: https://pedantic-ptolemy-57874b.netlify.com/
